@@ -1879,8 +1879,13 @@ class Prep():
             repack = "REPACK2"
         if "REPACK3" in (video or edition) or "V4" in video:
             repack = "REPACK3"
-        if "PROPER" in (video or edition):
-            repack = "PROPER"
+        name_parts = video.upper().split('-')
+        release_group_index = len(name_parts) - 1
+        i = 0
+        while i < release_group_index:
+            if "PROPER" in name_parts[i] or edition:
+                repack = "PROPER"
+            i += 1
         if "RERIP" in (video.upper() or edition):
             repack = "RERIP"
         # if "HYBRID" in video.upper() and "HYBRID" not in title.upper():
